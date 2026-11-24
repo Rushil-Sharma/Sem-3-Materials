@@ -1,0 +1,1461 @@
+Fundamentals of Database Systems
+Complete Course Notes with Solved Examples
+Based on Elmasri & Navathe, 7th Edition (Pearson, 2015)
+Ch. 12 Introduction to Databases, Architecture, Data Models
+Ch. 3 ER Model Entities, Attributes, Relationships
+Ch. 4 EER Model Specialisation, Generalisation, Categories
+Ch. 5 Relational Data Model and Constraints
+Ch. 9 EREER to Relational Mapping (all 7 steps + EER options)
+Ch. 14 Functional Dependencies and Normal Forms (1NF4NF)
+Ch. 15 Armstrong's Axioms, Minimal Cover, BCNF & 3NF Algorithms
+Ch. 8 Relational Algebra and Tuple Relational Calculus
+Ch. 6 Basic SQL DDL, DML, Queries, Aggregates
+Ch. 7 Advanced SQL Subqueries, Joins, Views, Triggers
+Every section includes solved examples similar to your assignments (IA, GA, N-I, RA-I, RA-G, IA6).
+Fundamentals of Database Systems CONTENTS
+Contents
+How to Use These Notes 3
+1 Databases and Database Users (Chapter 1) 4
+1.1 What is a Database . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+1.2 Characteristics of the Database Approach . . . . . . . . . . . . . . . . . . . . . . . . . 4
+1.3 Actors and Workers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+1.4 Advantages of the DBMS Approach . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2 Database System Concepts and Architecture (Chapter 2) 5
+2.1 Data Models, Schemas, and Instances . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.2 Three-Schema Architecture (ANSISPARC) . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.3 Database Languages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.4 DBMS Architecture and Module Types . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+2.5 Centralised and ClientServer Architectures (Section 2.5) . . . . . . . . . . . . . . . . 6
+3 Data Modeling Using the ER Model (Chapter 3) 8
+3.1 The Role of Conceptual Modeling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+3.2 Entity Types, Entity Sets, and Attributes . . . . . . . . . . . . . . . . . . . . . . . . . 8
+3.2.1 Types of Attributes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+3.3 Relationship Types, Sets, and Structural Constraints . . . . . . . . . . . . . . . . . . . 8
+3.3.1 Cardinality Ratios and Participation Constraints . . . . . . . . . . . . . . . . . 9
+3.4 Weak Entity Types . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+3.5 ER Diagram Notation Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+4 The Enhanced ER (EER) Model (Chapter 4) 11
+4.1 Subclasses, Superclasses, and Inheritance . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+4.2 Specialisation and Generalisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+4.3 Constraints on Specialisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+4.3.1 Disjointness Constraint . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+4.3.2 Completeness Constraint . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+4.3.3 Dening (Predicate-dened) vs. User-dened . . . . . . . . . . . . . . . . . . . 11
+4.4 Specialisation Hierarchies and Lattices . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+4.5 Categories (UNION Types) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+5 The Relational Data Model (Chapter 5) 13
+5.1 Formal Denitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+5.2 Relational Model Constraints . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+5.3 Update Operations and Constraint Violations . . . . . . . . . . . . . . . . . . . . . . . 14
+6 EREER to Relational Mapping (Chapter 9) 15
+6.1 The 7-Step Algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+6.2 Mapping EER Specialisation  Generalisation . . . . . . . . . . . . . . . . . . . . . . . 16
+7 Normalization Functional Dependencies (Chapter 14) 18
+7.1 Why Normalize . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+7.2 Functional Dependencies (FDs) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+7.3 Normal Forms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+8 Normalization Algorithms and Decompositions (Chapter 15) 20
+8.1 Armstrong's Axioms (Inference Rules for FDs) . . . . . . . . . . . . . . . . . . . . . . 20
+8.2 Attribute Closure Algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+1
+Fundamentals of Database Systems CONTENTS
+8.3 Equivalent FD Sets and Minimal Cover . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+8.4 Properties of Decompositions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+8.5 BCNF Decomposition Algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+8.6 3NF Synthesis Algorithm (Bernstein) . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+9 Relational Algebra and Calculus (Chapter 8) 24
+9.1 Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+9.2 Unary Operations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+9.3 Set-Theory Operations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+9.4 Binary Relational Operations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+9.5 Tuple Relational Calculus (TRC) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+10 Basic SQL (Chapter 6) 27
+10.1 SQL DDL Data Types and CREATE TABLE . . . . . . . . . . . . . . . . . . . . . . 27
+10.2 Basic Retrieval Queries . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+10.3 Aggregate Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+10.4 INSERT, DELETE, UPDATE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+11 Advanced SQL Subqueries, Views, Triggers (Chapter 7) 29
+11.1 Nested Queries and Subqueries . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+11.2 Explicit JOIN Syntax . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+11.3 GROUP BY, HAVING  Advanced Patterns . . . . . . . . . . . . . . . . . . . . . . . . 30
+11.4 Views (Virtual Tables) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+11.5 Specifying Constraints as Assertions (Section 7.2) . . . . . . . . . . . . . . . . . . . . . 32
+11.6 Actions as Triggers (Section 7.2) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+11.7 Schema Change Statements (Section 7.4) . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+12 Embedded SQL and SQLJ (Chapter 10, Sections 10.1 and 10.2) 35
+12.1 Overview of Database Programming Approaches (Section 10.1) . . . . . . . . . . . . . 35
+12.2 Embedded SQL in C (Section 10.2) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+12.3 SQLJ Embedded SQL in Java (Section 10.2) . . . . . . . . . . . . . . . . . . . . . . . 38
+13 Quick Reference and Summary 39
+Quick Reference 39
+2
+Fundamentals of Database Systems CONTENTS
+How to Use These Notes
+These notes are designed so that after reading each section you can directly solve the corresponding
+assignment problems. Blue boxes are denitions, green boxes are key concepts, purple boxes are solved
+examples (worked through step by step), yellow boxes are notestips, and red boxes warn against
+common mistakes. SQL code blocks appear in grey boxes with syntax highlighting.
+3
+Fundamentals of Database Systems Ch.1  Databases & Users
+1 Databases and Database Users (Chapter 1)
+1.1 What is a Database
+Database and DBMS
+A database is a collection of related data with an implicit meaning, representing some aspect
+of the real world (a miniworld or universe of discourse).
+A DBMS (Database Management System) is a software system that enables users to dene,
+construct, manipulate, and share databases.
+A database system = DBMS software + the database itself.
+1.2 Characteristics of the Database Approach
+The database approach diers from traditional le systems in four fundamental ways
+1. Self-describing nature (metadata  catalog) The DBMS catalog stores the structure (schema)
+of the database alongside the data itself. Any program accessing the database can ask the DBMS
+for the structure at run-time.
+2. Programdata independence The structure is in the catalog, not hard-coded in programs.
+Changing a le's structure (e.g. adding a column) does not require rewriting every application that
+uses it.
+3. Data abstraction Users see a logical view through a data model; physical storage details are
+hidden.
+4. Support for multiple views and concurrent multiuser access Dierent users can see dierent subsets of data, and the DBMS handles concurrent access through concurrency control.
+1.3 Actors and Workers
+Actors on the scene (interact with the database directly)
+ Database Administrator (DBA) Manages the DBMS environment  authorises access, monitors
+use, buys hardwaresoftware.
+ Database Designer Identies data to be stored, designs the schema.
+ End Users Casual (ad-hoc queries), NaiveParametric (canned transactions), Sophisticated (analysts), Stand-alone (personal databases).
+ Application Programmers  System Analysts Build and maintain applications.
+1.4 Advantages of the DBMS Approach
+Controlling redundancy; restricting unauthorised access; providing persistent storage; ecient query
+processing via indexes and optimisation; backup and recovery; enforcing integrity constraints; multiple
+interfaces.
+4
+Fundamentals of Database Systems Ch.2  Concepts & Architecture
+2 Database System Concepts and Architecture (Chapter 2)
+2.1 Data Models, Schemas, and Instances
+Data Model
+A data model is a set of concepts for describing the structure of a database (data types,
+relationships, constraints) and the operations on it. Categories
+ High-level  Conceptual Close to human perception. Example EntityRelationship
+(ER) model.
+ Representational (Logical) Used by commercial DBMS. Example Relational model.
+ Physical Describes how data is stored on disk.
+Schema vs. Instance
+Schema (intension) The descriptionstructure of the database  dened at design time, rarely
+changes.
+Instance (extensionstatesnapshot) The actual data stored at a point in time  changes
+with every update.
+Analogy Schema = class denition in a programming language; Instance = an object of that
+class.
+2.2 Three-Schema Architecture (ANSISPARC)
+Three-Schema Architecture
+The goal is to separate users from physical storage
+1. Internal (Physical) level Describes physical storage structures  record formats, indexes, le organisation.
+2. Conceptual level Describes the structure of the entire database for the community
+of users. Hides physical details. Dened using a conceptuallogical data model (e.g.
+relational).
+3. External (View) level Individual user views  each describes the part of the database
+that a particular user group cares about.
+Mappings between levels translate requests and results between adjacent levels.
+Data Independence
+Logical data independence Change the conceptual schema without changing external
+schemas or application programs (e.g. add a new table or column).
+Physical data independence Change the internal schema without changing the conceptual
+schema (e.g. move data to a dierent disk, change an index structure).
+Physical independence is easier to achieve than logical independence.
+2.3 Database Languages
+ DDL (Data Denition Language) Denes schemas  CREATE, ALTER, DROP.
+ DML (Data Manipulation Language) Retrieves and updates data.
+ High-level  Declarative (SQL) Species what to retrieve.
+ Low-level  Procedural Retrieves one record at a time; must be embedded in a host language.
+5
+Fundamentals of Database Systems Ch.2  Concepts & Architecture
+ VDL (View Denition Language) Denes external views (in SQL, the CREATE VIEW statement
+serves as VDL).
+2.4 DBMS Architecture and Module Types
+Main component modules DDL compiler (processes DDL, stores in catalog), Query compiler
+(parses SQL), Query optimizer (chooses execution plan), Runtime database processor (executes
+queries, updates), Stored data manager (controls disk access).
+2.5 Centralised and ClientServer Architectures (Section 2.5)
+Centralised Architecture
+All DBMS functionality and data reside on a single machine. Users connect via dumb terminals
+that send keystrokes and display output. Simple to administer but cannot scale to large numbers
+of concurrent users.
+Two-Tier ClientServer Architecture
+Functionality split between a client machine and a server machine
+ Client runs the application program and user interface. Sends SQL queries to the server
+over a network.
+ Server (database server) runs the DBMS, processes queries, returns results.
+The client communicates using a standard API such as ODBC (Open Database Connectivity)
+or JDBC (Java Database Connectivity). Many clients can share one database server.
+Three-Tier (N-Tier) ClientServer Architecture
+Adds a middle application server layer between the client and the DBMS
+1. Presentation tier (client) thin client  web browser or mobile app. Handles only
+display and user input.
+2. Application server tier (middle tier) webapplication server. Contains business
+logic, session management, and security. Sends SQL to the database tier.
+3. Database server tier DBMS. Executes queries and manages data.
+Advantages the database is never directly exposed to the internet; business logic is centralised
+(not duplicated in every client); each tier can be scaled independently (e.g. add more application
+servers during peak load).
+Most modern web applications (banking, e-commerce, airline reservations) use the three-tier
+model.
+Note
+Comparison summary
+Architecture Tiers Scales Typical use
+Centralised 1 No Legacy mainframes
+Two-tier clientserver 2 Somewhat Departmental apps
+Three-tier  n-tier 3+ Yes Web  mobile apps
+6
+Fundamentals of Database Systems Ch.2  Concepts & Architecture
+Exercise 2.14 Architecture for a Web-Based Airline Reservation System
+Question Which DBMS architecture would you choose for a web-based system to make airline
+reservations and sell tickets Why would the other architectures not be a good choice
+Answer Three-tier (n-tier) clientserver.
+ Presentation tier Web browser or mobile app. Thin client  no installation required,
+works on any device.
+ Application server tier Handles business rules (check seat availability, enforce booking constraints, process payments, manage user sessions, enforce fare rules). This tier is
+completely separate from the database, so it can be replicated horizontally across many
+machines to handle thousands of simultaneous users (e.g. during a sale).
+ Database server tier The DBMS stores ights, fares, reservations, and passengers. It is
+shielded behind the application server  end users never send SQL directly to the database
+(security and integrity protection).
+Why not centralised A single machine cannot handle global airline trac; it is a single
+point of failure; it cannot scale.
+Why not two-tier The database would be directly accessible from client machines (security
+risk). Business logic would have to be duplicated in every client application. Poor scalability 
+a single database server would be overwhelmed.
+7
+Fundamentals of Database Systems Ch.3  ER Model
+3 Data Modeling Using the ER Model (Chapter 3)
+3.1 The Role of Conceptual Modeling
+A conceptual schema is produced in the rst phase of database design. It describes what data exists
+and how it is related, independent of any DBMS or implementation. The ER model is the most widely
+used tool for this phase.
+3.2 Entity Types, Entity Sets, and Attributes
+Entity, Entity Type, Entity Set
+An entity is a distinct real-world thing or concept with an independent existence (physical a
+person, car; conceptual a company, job).
+An entity type denes the structure of similar entities its name and list of attributes. E.g.,
+EMPLOYEE(Name, Ssn, Salary).
+An entity set is the set of all current instances of an entity type stored in the database.
+3.2.1 Types of Attributes
+Type Description ER Notation
+Simple (atomic) Single indivisible value Ellipse
+Composite Divisible into sub-attributes Ellipse with child ellipses
+Multi-valued Multiple values for one entity Double ellipse
+Derived Computed from other attributes Dashed ellipse
+Stored Source from which a derived attr is computed Regular ellipse
+NULL Unknown or inapplicable value (no special symbol)
+Key Uniquely identies each entity Underlined label
+Example EMPLOYEE Entity Type Attributes
+Consider the EMPLOYEE entity type
+ Ssn simple, key attribute.
+ Name composite → {First_name, Middle_initial, Last_name}.
+ Address composite → {Number, Street, City, State, Zip}.
+ Birth_date stored (simple).
+ Age derived from Birth_date (shown dashed).
+ Phone_numbers multi-valued (an employee may have  1 phone).
+ Salary simple.
+3.3 Relationship Types, Sets, and Structural Constraints
+Relationship Type, Degree, Role
+A relationship type R among entity types E1, . . . , En denes a set of associations between
+their entities.
+The degree of a relationship is n. Most relationships are binary (degree 2).
+In a recursive (self-referencing) relationship, the same entity type appears more than once;
+each participation is given a role name to distinguish them.
+A relationship can itself have attributes (e.g., the Hours attribute on WORKS_ON).
+8
+Fundamentals of Database Systems Ch.3  ER Model
+3.3.1 Cardinality Ratios and Participation Constraints
+Structural Constraints
+Cardinality ratio (maximum) how many instances of E2 one instance of E1 can be related
+to.
+ 1  1 one-to-one. 1  N one-to-many. M  N many-to-many.
+Participation constraint (minimum)
+ Total (existence dependency) every entity must participate. Shown by double line.
+ Partial entities may or may not participate. Shown by single line.
+(min, max) notation More precise. (0, 1), (1, 1), (0, N), (1, N), etc. Species the minimum
+and maximum number of relationships an entity participates in.
+Example COMPANY Database Relationships
+WORKS_FOR between EMPLOYEE and DEPARTMENT N1 cardinality (many employees work
+for one department). Every employee must work for a department (total participation on employee side). A department may have zero employees (partial) but typically has one manager.
+MANAGES between EMPLOYEE and DEPARTMENT 11. Each department has exactly one manager; each employee manages at most one department.
+WORKS_ON between EMPLOYEE and PROJECT MN. One employee can work on many
+projects; one project can have many employees. Relationship attribute Hours.
+SUPERVISION (recursive on EMPLOYEE) One employee (supervisor) supervises many employees (supervisees). Role names supervisor, supervisee.
+3.4 Weak Entity Types
+Weak Entity Type
+An entity type with no key attributes of its own. It is identied by
+1. Its partial key (discriminator) attribute(s) that distinguish weak entities belonging to
+the same owner entity. Shown with a dashed underline.
+2. Its owner entity type via an identifying relationship type.
+The weak entity's full key = partial key + owner's primary key.
+Notation weak entity = double rectangle; identifying relationship = double diamond.
+Example DEPENDENT weak entity
+DEPENDENT (dependent of an employee) has attributes Dependent_name (partial key  dashed
+underline), Sex, Birth_date, Relationship.
+Two dependents of dierent employees may share the same name, so Dependent_name alone is
+not a key.
+Full key = (Essn, Dependent_name), where Essn is the owner EMPLOYEE's key.
+Identifying relationship DEPENDENTS_OF (double diamond) with total participation on the
+DEPENDENT side (a dependent cannot exist without its owner).
+9
+Fundamentals of Database Systems Ch.3  ER Model
+3.5 ER Diagram Notation Summary
+Concept Shape Notes
+Strong entity type Single rectangle
+Weak entity type Double rectangle
+Attribute Ellipse
+Key attribute Ellipse, underlined label
+Partial key (weak) Ellipse, dashed underline
+Multi-valued attribute Double ellipse
+Derived attribute Dashed ellipse
+Composite attribute Ellipse with child ellipses
+Relationship type Diamond
+Identifying relationship Double diamond Links weak entity to owner
+Total participation Double line Existence dependency
+Partial participation Single line
+Cardinality label 1, N, M at line end
+(min,max) label (x, y) near entity end More precise than 1NM
+Relationship attribute Ellipse attached to diamond
+GA2 Style Problem Designing an ER Diagram for a TV Show Database
+Requirements
+ TV shows identied by Title + Year. Attribute Genre (multi-valued).
+ Production companies identied by Name. Attribute Address (composite Street, City,
+Country).
+ A production company produces TV shows (1N one company, many shows; total participation on TV show side).
+ Each TV show has seasons. SEASON is a weak entity partial key = Season_No. Full key
+= (Title, Year, Season_No).
+ Each season has episodes. EPISODE is a weak entity of SEASON partial key =
+Episode_No. Full key = (Title, Year, Season_No, Episode_No). Attributes Duration_Min, Plot_Outline.
+ Persons identied by Name + DOB. Specialisation into DIRECTOR and ACTOR (overlapping,
+partial  a person can be both, or neither).
+ Directors direct episodes (MN). Actors act in episodes (MN).
+Key design decisions
+ Genre is multi-valued (double ellipse) because a show can have multiple genres.
+ Address is composite  split into Street, City, Country.
+ SEASON and EPISODE are weak entities because they are only meaningful within their
+parent.
+ PersonActorDirector use the EER specialisation triangle with an o (overlapping)
+marker and a single line from superclass to circle (partial specialisation).
+10
+Fundamentals of Database Systems Ch.4  EER Model
+4 The Enhanced ER (EER) Model (Chapter 4)
+4.1 Subclasses, Superclasses, and Inheritance
+Subclass  Superclass  IS-A
+When an entity type E has subgroupings of entities with additional attributes or relationships,
+we dene
+ Superclass The original entity type (E).
+ Subclass A meaningful subgrouping (e.g., SECRETARY, ENGINEER are subclasses of
+EMPLOYEE).
+ IS-A relationship Every member of a subclass is also a member of the superclass.
+ Attribute inheritance A subclass entity inherits all attributes and relationship participations of the superclass, plus it has its own additional specic attributes.
+An entity may simultaneously belong to multiple subclasses.
+4.2 Specialisation and Generalisation
+Specialisation vs. Generalisation
+Specialisation Top-down design  start from a superclass, dene subclasses by identifying
+distinguishing characteristics. E.g., EMPLOYEE → {SECRETARY, ENGINEER, TECHNICIAN}.
+Generalisation Bottom-up design  start from multiple entity types that share common properties, merge them into a superclass. E.g., {CAR, TRUCK} → VEHICLE.
+4.3 Constraints on Specialisation
+4.3.1 Disjointness Constraint
+ Disjoint (d) An entity can belong to at most one subclass. Marked with d inside the circle.
+Example An employee is either HOURLY_EMPLOYEE or SALARIED_EMPLOYEE, never both.
+ Overlapping (o) An entity can belong to multiple subclasses simultaneously. Marked with o
+inside the circle. Example A PERSON can be both an EMPLOYEE and a STUDENT.
+4.3.2 Completeness Constraint
+ Total specialisation Every superclass entity must belong to at least one subclass. Shown with a
+double line from superclass to specialisation circle.
+ Partial specialisation A superclass entity may not belong to any subclass. Shown with a single
+line.
+4.3.3 Dening (Predicate-dened) vs. User-dened
+ Attribute-dened (predicate-dened) Membership is determined by the value of a specic
+attribute. The dening attribute and predicate value are written on the line. E.g., Job_type =
+'Secretary'.
+ User-dened Membership is explicitly assigned by users; the DBMS cannot determine it automatically.
+11
+Fundamentals of Database Systems Ch.4  EER Model
+Example Specialisation Constraints for EMPLOYEE
+Scenario A  Disjoint, Partial EMPLOYEE has subclasses MANAGER and ENGINEER. An employee can be a manager or an engineer, but most employees are neither. ⇒ Use d, single line.
+Scenario B  Overlapping, Total Every PERSON in the university is either a STUDENT,
+FACULTY, or STAFF (or a combination). ⇒ Use o, double line.
+Scenario C  Disjoint, Total (attribute-dened) EMPLOYEE is always either
+HOURLY_EMPLOYEE or SALARIED_EMPLOYEE (every employee has exactly one pay type). The
+Emp_type attribute determines the subclass. ⇒ Use d, double line, label Emp_type on the line.
+4.4 Specialisation Hierarchies and Lattices
+ Specialisation hierarchy Each subclass has only one superclass (single inheritance tree).
+ Specialisation lattice A subclass can have multiple superclasses (multiple inheritance). Called a
+shared subclass. Example ENGINEERING_MANAGER inherits from both ENGINEER and MANAGER.
+4.5 Categories (UNION Types)
+Category
+A category (UNION type U) is a subclass that is a subset of the union of two or more dierent
+entity types (superclasses). Shown with a U symbol in the circle.
+Example OWNER is a category of {PERSON, COMPANY, BANK}. An owner entity is exactly one of
+these three types.
+Category vs. shared subclass
+ Shared subclass entity must be in ALL superclasses (ANDintersection).
+ Category entity is in AT LEAST ONE superclass (ORunion).
+EER to ER Diagram TV Show Database (IA2 Style)
+Hierarchy PERSON (superclass) with subclasses ACTOR and DIRECTOR.
+ Disjointness overlapping (o)  the same person can be both an actor and a director.
+ Completeness partial (single line)  a person in the database need not be an actor or
+director; a production company employee, for instance, might be stored as a person.
+ PERSON Name, DOB (composite key).
+ ACTOR inherits Name, DOB; adds contract details.
+ DIRECTOR inherits Name, DOB; adds No_Episodes_Directed.
+(min,max) on PRODUCES PRODUCTION_COMPANY side (1, N)  a company produces at least 1 show. TV_SHOW side (1, 1)  every show is produced by exactly 1 company
+(total participation, 1-side).
+12
+Fundamentals of Database Systems Ch.5  Relational Model
+5 The Relational Data Model (Chapter 5)
+5.1 Formal Denitions
+Relation Schema, Relation, Degree, Cardinality
+A relation schema R(A1, A2, . . . , An) has a name R and a list of attributes A1, . . . , An, each
+with a domain dom(Ai).
+A relation instance r(R) is a set of tuples (rows), each of which assigns a value from dom(Ai)
+(or NULL) to each attribute Ai
+.
+Degree number of attributes. Cardinality number of tuples.
+Key property a relation is a set of tuples  no duplicates, no inherent ordering.
+5.2 Relational Model Constraints
+Domain, Key, Entity Integrity, Referential Integrity
+Domain constraint Each attribute value must be atomic and from dom(Ai).
+Superkey A set SK of attributes such that no two distinct tuples have the same value for
+SK.
+Key A minimal superkey (no proper subset is also a superkey).
+Candidate key Any key; a schema may have several.
+Primary key (PK) The chosen candidate key; shown underlined in schema notation.
+Entity integrity No primary key attribute may be NULL (you cannot identify what you cannot
+name).
+Referential integrity (FK) A set FK in R1 referencing PK of R2
+ Every value of FK in R1 either equals some PK value in R2, or is NULL.
+ R1 = referencing relation; R2 = referenced relation.
+COMPANY Database Relational Schema
+EMPLOYEE(Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary,
+Super_ssn, Dno)
+PK Ssn
+FK Super_ssn - EMPLOYEE.Ssn
+FK Dno - DEPARTMENT.Dnumber
+DEPARTMENT(Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+PK Dnumber AK Dname
+FK Mgr_ssn - EMPLOYEE.Ssn
+PROJECT(Pname, Pnumber, Plocation, Dnum)
+PK Pnumber
+FK Dnum - DEPARTMENT.Dnumber
+WORKS_ON(Essn, Pno, Hours)
+PK (Essn, Pno)
+FK Essn - EMPLOYEE.Ssn
+FK Pno - PROJECT.Pnumber
+13
+Fundamentals of Database Systems Ch.5  Relational Model
+DEPENDENT(Essn, Dependent_name, Sex, Bdate, Relationship)
+PK (Essn, Dependent_name)
+FK Essn - EMPLOYEE.Ssn
+5.3 Update Operations and Constraint Violations
+Operation Possible Violation Typical Response
+INSERT Domain, key, entity integrity, referential integrity Reject the insertion
+DELETE Referential integrity (other tuples reference the deleted one) Restrict  Cascade  Set NULL  SetDefault
+UPDATE Any constraint depending on what is modied Restrict  Cascade  Set NULL
+Constraint Violation Examples
+INSERT violation Trying to insert an EMPLOYEE with Dno = 7 when no DEPARTMENT has
+Dnumber = 7 → referential integrity violation. Reject.
+DELETE violation Deleting a DEPARTMENT tuple that is referenced by some EMPLOYEE's Dno.
+Options
+ RESTRICT Reject the deletion.
+ CASCADE Also delete all employees in that department.
+ SET NULL Set Dno to NULL in those employees.
+14
+Fundamentals of Database Systems Ch.9  ER to Relational Mapping
+6 EREER to Relational Mapping (Chapter 9)
+6.1 The 7-Step Algorithm
+Step 1  Strong Entity Types
+For each strong entity type E, create a relation R(A1, . . . , An) with all simple attributes. For a
+composite attribute, include only its simple components. Choose a key attribute as PK. Do not
+store derived attributes.
+Step 2  Weak Entity Types
+For each weak entity type W with owner E (Step 1 relation T), create a relation S. Include all
+simple attributes of W plus the PK of T as an FK. PK of S = FK (from T) + partial key of W.
+Step 3  Binary 11 Relationships
+Identify relations S and T for the two entity types. Preferably choose S as the entity with total
+participation. Add the PK of T as an FK into S. Also add any relationship attributes to S.
+Alternative create a separate relation (less common, but valid when both sides are partial).
+Step 4  Binary 1N Relationships
+Identify S = relation for the N-side entity type. Add PK of the 1-side entity as an FK in S.
+Add relationship attributes to S.
+Step 5  Binary MN Relationships
+Create a new relation R. Include PK of both participating entity types as FKs. The PK of R
+= both FKs combined (unless a subset is sucient). Add relationship attributes to R.
+Step 6  Multivalued Attributes
+For each multivalued attribute A of entity type E (with relation T, PK K), create a new relation
+R(K, A) where K is an FK referencing T. PK of R = (K, A).
+Step 7  N-ary Relationships (n  2)
+Create a new relation R. Include PK of all n participating entity types as FKs. Add relationship
+attributes. The PK of R is typically all FKs combined (but check if any subset suces due to
+cardinality constraints).
+Worked Mapping COMPANY Database (Steps 16)
+Step 1  Strong entities
+EMPLOYEE(Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary)
+-- Composite Name - simple parts; derived Age omitted
+DEPARTMENT(Dname, Dnumber)
+PROJECT(Pname, Pnumber, Plocation)
+Step 2  Weak entity
+DEPENDENT(Essn, Dependent_name, Sex, Bdate, Relationship)
+15
+Fundamentals of Database Systems Ch.9  ER to Relational Mapping
+PK=(Essn, Dependent_name), FK Essn - EMPLOYEE.Ssn
+Step 3  11 MANAGES (EMPLOYEE manages DEPARTMENT)
+DEPARTMENT(Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+FK Mgr_ssn - EMPLOYEE.Ssn (total participation on DEPARTMENT side)
+Step 4  1N WORKS_FOR (DEPARTMENT has many EMPLOYEEs)
+EMPLOYEE(..., Dno) FK Dno - DEPARTMENT.Dnumber
+Step 5  MN WORKS_ON (EMPLOYEE works on PROJECT)
+WORKS_ON(Essn, Pno, Hours)
+PK=(Essn,Pno), FKEssn-EMPLOYEE.Ssn, FKPno-PROJECT.Pnumber
+Step 6  Multi-valued attribute Locations of DEPARTMENT
+DEPT_LOCATIONS(Dnumber, Dlocation)
+PK=(Dnumber, Dlocation), FK Dnumber - DEPARTMENT.Dnumber
+6.2 Mapping EER Specialisation  Generalisation
+There are four options. The right choice depends on the disjointness and completeness constraints.
+Option What it does Best when Drawback
+A One relation per superclass
++ one per subclass; subclass relation FK-references
+superclass PK
+Always works Joins needed
+B One relation per subclass
+only; each includes all superclass attributes
+Total + Disjoint only Cannot represent entities
+not in any subclass
+C Single relation for the whole
+hierarchy + one type attribute
+Disjoint, frequently queried
+together
+Many NULLs
+D Single relation + one
+Boolean ag per subclass
+Overlapping Many NULLs
+Worked Mapping TV Show Database EER (EtoR-I  GA3 Style)
+Given the EER diagram for the TV show database (from IA2)
+Step 1  Strong entities
+PRODUCTION_COMPANY(Name, Street, City, Country) PK Name
+PERSON(Name, DOB) PK (Name, DOB)
+TV_SHOW(Title, Year, Company_Name)
+PK (Title, Year)
+FK Company_Name - PRODUCTION_COMPANY.Name NOT NULL
+Step 2  Weak entities
+SEASON(Title, Year, Season_No)
+PK (Title, Year, Season_No)
+FK (Title, Year) - TV_SHOW NOT NULL
+EPISODE(Title, Year, Season_No, Episode_No, Duration_Min, Plot_Outline)
+PK (Title, Year, Season_No, Episode_No)
+FK (Title, Year, Season_No) - SEASON NOT NULL
+Step 6  Multi-valued attribute Genre
+TV_SHOW_GENRE(Title, Year, Genre)
+16
+Fundamentals of Database Systems Ch.9  ER to Relational Mapping
+PK (Title, Year, Genre)
+FK (Title, Year) - TV_SHOW
+EER Specialisation  PERSON → {ACTOR, DIRECTOR} (overlapping, partial) using Option A
+DIRECTOR(Name, DOB)
+PK (Name, DOB), FK (Name, DOB) - PERSON
+ACTOR(Name, DOB)
+PK (Name, DOB), FK (Name, DOB) - PERSON
+Why Option A Overlapping specialisation means an entity can be in both subclasses. Option
+A handles this naturally. Option B would require storing a person's row in both tables and
+cannot represent a person who is neither.
+MN  DIRECTS and ACTS_IN (between PERSON subclasses and EPISODE)
+DIRECTS(Name, DOB, Title, Year, Season_No, Episode_No)
+PK all columns; FK to DIRECTOR and EPISODE
+ACTS_IN(Name, DOB, Title, Year, Season_No, Episode_No)
+PK all columns; FK to ACTOR and EPISODE
+17
+Fundamentals of Database Systems Ch.14  Normalization I
+7 Normalization Functional Dependencies (Chapter 14)
+7.1 Why Normalize
+Poor relational schema designs cause update anomalies
+ Insertion anomaly Cannot insert data about one entity without data about another.
+ Deletion anomaly Deleting data about one entity inadvertently deletes data about another.
+ Modication anomaly Updating a fact requires changing multiple rows; if some are missed, the
+data becomes inconsistent.
+7.2 Functional Dependencies (FDs)
+Functional Dependency
+X → Y holds on R if for every legal state r(R)
+whenever t1[X] = t2[X] for tuples t1, t2, then t1[Y ] = t2[Y ].
+X functionally determines Y , or Y is functionally dependent on X.
+An FD is a property of the schema (all possible states), not just one particular table instance.
+Determined by the semantics of the data.
+Full FD, Partial FD, Transitive FD
+X → Y is a full FD if removing any attribute A from X causes the FD to no longer hold.
+X → Y is a partial FD if some A ∈ X can be removed and the FD still holds.
+X → Z is a transitive FD (via Y ) if X → Y , Y ̸→ X, and Y → Z (and Y, Z ̸⊆ X).
+Identifying FD Types
+Consider EMP_PROJ(Ssn, Pno, Hours, Ename, Pname, Plocation).
+Assume FDs {Ssn, P no} → Hours (full  both are needed), Ssn → Ename (partial on the
+PK {Ssn, P no}), P no → {P name, Plocation} (partial on PK).
+This schema suers from anomalies if the only employee on a project leaves, the project name
+and location are lost (deletion anomaly).
+Also consider EMP_DEPT(Ename, Ssn, Bdate, Address, Dnumber, Dname, Dmgr_ssn).
+FDs Ssn → Dnumber and Dnumber → Dname. So Ssn → Dname is a transitive FD (via
+Dnumber).
+7.3 Normal Forms
+1NF  First Normal Form
+A relation is in 1NF if the domain of every attribute contains only atomic values (no sets, no
+nested relations, no repeating groups). Each cell contains a single value.
+2NF  Second Normal Form
+R is in 2NF if it is in 1NF and no non-prime attribute is partially functionally dependent
+on any candidate key.
+A non-prime attribute is one that does not belong to any candidate key.
+18
+Fundamentals of Database Systems Ch.14  Normalization I
+If the PK is a single attribute, 2NF is automatically satised.
+3NF  Third Normal Form
+R is in 3NF if for every nontrivial FD X → A in F
++, either
+1. X is a superkey of R, or
+2. A is a prime attribute.
+Informally no non-prime attribute is transitively dependent on the primary key.
+BCNF  Boyce-Codd Normal Form
+R is in BCNF if for every nontrivial FD X → Y in F
++
+X is a superkey of R.
+BCNF is stricter than 3NF. BCNF ⇒ 3NF but not vice versa.
+The 3NF condition A is prime is not available in BCNF.
+Determining the Highest Normal Form  GA4 Style
+Problem R(A, C, F, G, K, L) with FDs Σ = {L → A, F → GKL, C → AFK, K → F}.
+Step 1 Find all candidate keys. Compute closures
+ A+ = {A} (no FD has A on LHS). Not a superkey.
+ C
++ start {C}. Apply C → AFK ⇒ {C, A, F, K}. Apply F → GKL ⇒
+{C, A, F, K, G, L}. Apply L → A (already have A). C
++ = R. Superkey!
+ F
++ {F} → GKL (via F → GKL) → add A (via L → A). F
++ = {A, F, G, K, L}. Not a
+superkey (no C).
+ K+ {K} → F → GKL → A. K+ = {A, F, G, K, L}. Not a superkey.
+ Subsets of C C alone is minimal. Only candidate key {C}. So C is the only prime
+attribute.
+Step 2 Check 2NF. The PK is {C} (single attribute). No partial dependencies possible. R
+is in 2NF.
+Step 3 Check 3NF. Non-prime attributes A, F, G, K, L. Check for transitive FDs
+ C → F (from C → AFK), and F → GKL (non-prime → non-prime). This is a transitive
+dependency C → F → G. So F → G violates 3NF (F is not a superkey, G is not prime).
+ Similarly L → A, K → F violate 3NF.
+R is in 2NF but NOT in 3NF.
+4NF  Fourth Normal Form
+A multivalued dependency (MVD) X ↠ Y on R means for any tuples t1, t2 with t1[X] =
+t2[X], there exist tuples t3, t4 with the same X value where t3[Y ] = t1[Y ], t3[Z] = t2[Z],
+t4[Y ] = t2[Y ], t4[Z] = t1[Z] (where Z = R − X − Y ).
+R is in 4NF if for every nontrivial MVD X ↠ Y , X is a superkey of R.
+4NF eliminates redundancy caused by independent multi-valued facts stored in the same relation.
+Note
+An FD X → Y implies the MVD X ↠ Y . So every BCNF violation is also a 4NF violation,
+and 4NF implies BCNF.
+19
+Fundamentals of Database Systems Ch.15  Normalization Algorithms
+8 Normalization Algorithms and Decompositions (Chapter 15)
+8.1 Armstrong's Axioms (Inference Rules for FDs)
+Armstrong's Axioms  Sound and Complete
+IR1 (Reexivity) If Y ⊆ X, then X → Y . (Trivial FDs.)
+IR2 (Augmentation) If X → Y , then XZ → Y Z for any Z.
+IR3 (Transitivity) If X → Y and Y → Z, then X → Z.
+Derived rules (provable from IR1IR3)
+ IR4 (Decomposition) If X → Y Z, then X → Y and X → Z.
+ IR5 (Union) If X → Y and X → Z, then X → Y Z.
+ IR6 (Pseudotransitivity) If X → Y and W Y → Z, then W X → Z.
+8.2 Attribute Closure Algorithm
+Computing X+ under F
+Input Attribute set X, FD set F.
+Output X+ = all attributes determined by X.
+1. Set X+ = X.
+2. Repeat for each FD Y → Z in F, if Y ⊆ X+, add Z to X+.
+3. Until no change.
+Use X is a superkey of R i X+ = R. Used in normalization, nding candidate keys, and
+testing FD membership (X → A ∈ F
++ i A ∈ X+).
+Attribute Closure Computation
+R(A, B, C, D, E), F = {A → BC, CD → E, B → D, E → A}.
+Compute (AC)
++
+ Start {A, C}.
+ Apply A → BC add B ⇒ {A, B, C}.
+ Apply B → D add D ⇒ {A, B, C, D}.
+ Apply CD → E {C, D} ⊆ {A, B, C, D}, add E ⇒ {A, B, C, D, E} = R.
+(AC)
++ = R, so AC is a superkey. Is it minimal A+ = {A, B, C, D, E} = R (from A →
+BC → D, CD → E), so A alone is a superkey, meaning AC is not minimal. A is a candidate
+key.
+8.3 Equivalent FD Sets and Minimal Cover
+Equivalent FD Sets and Minimal Cover
+Two sets F and G are equivalent if F
++ = G+ (each covers the other).
+A minimal cover Fc of F satises
+1. Every FD has a single attribute on the right-hand side.
+2. No FD in Fc is redundant (removing it changes F
++
+c
+).
+3. No attribute on the LHS of any FD is extraneous (removing it still covers F
++).
+Also called canonical cover. Minimal covers are not unique.
+20
+Fundamentals of Database Systems Ch.15  Normalization Algorithms
+Computing a Minimal Cover  N-I  GA4 Style
+Problem Σ = {L → A, F → GKL, C → AFK, K → F} on R(A, C, F, G, K, L).
+Step 1 Split RHS into single attributes.
+L → A, F → G, F → K, F → L, C → A, C → F, C → K, K → F
+Step 2 Remove extraneous LHS attributes. All LHS are single attributes; nothing to
+remove.
+Step 3 Remove redundant FDs (test each by computing closure without it)
+FD LHS closure without it RHS reached Decision
+L → A L+ = {L} No Keep
+F → G F + = {F, K, L, A} (using F → K → F, F → L → A) No (G missing) Keep
+F → K F + = {F, G, L, A} (using F → G, F → L → A) No (K missing) Keep
+F → L F + = {F, G, K} (using F → G, F → K, K → F) No (L missing) Keep
+C → A C+ C → F → K → F, F → L → A; so C
++ = R Yes (A ∈ C
++) Remove
+C → F C+ C → K → F; so C
++ = R Yes (F ∈ C
++) Remove
+C → K C+ = {C} (no other FD from C left) No Keep
+K → F K+ = {K} No Keep
+Minimal cover Mc = {L → A, F → G, F → K, F → L, K → F, C → K}
+Grouped {L → A, F → GKL, K → F, C → K}
+Verication From C C → K → F → GKL → A (via L → A). So C
++ = R and C → AFK
+is recovered. The cover is equivalent to Σ.
+8.4 Properties of Decompositions
+Lossless Join Property
+A decomposition D = {R1, . . . , Rm} has the lossless join property w.r.t. F if r = πR1
+(r) ▷◁
+πR2
+(r) ▷◁ · · · ▷◁ πRm(r) for every legal state r(R).
+Test for binary decomposition {R1, R2} Lossless i (R1∩R2 → R1−R2) ∈ F
++ or (R1∩R2 →
+R2 − R1) ∈ F
++.
+In other words the common attributes form a key of at least one side.
+Dependency Preservation Property
+A decomposition D = {R1, . . . , Rm} is dependency-preserving if the union of the projections
+of F onto each Ri covers all of F
++. Each FD can be enforced locally without joins.
+BCNF decomposition always lossless, but may not preserve dependencies.
+3NF synthesis always lossless AND dependency-preserving.
+8.5 BCNF Decomposition Algorithm
+BCNF Decomposition
+1. Set D = {R}.
+2. While some Q ∈ D is not in BCNF
+(a) Find FD X → Y in Q that violates BCNF (X not a superkey of Q, Y ∩ X = ∅).
+(b) Replace Q with Q1 = X ∪ Y and Q2 = Q − (Y − X).
+21
+Fundamentals of Database Systems Ch.15  Normalization Algorithms
+(c) Lossless the common attributes X form a key of Q1 by assumption.
+BCNF Decomposition  GA4  N-I Style
+Problem R(A, C, F, G, K, L) with Σ = {L → A, F → GKL, C → AFK, K → F}.
+BCNF-violating FDs (LHS not a superkey) L → A, F → GKL, K → F.
+Split 1 Choose L → A.
+ R1(L, A) key L. Only FD L → A. In BCNF (2-attr schema).
+ R2(C, F, G, K, L) remaining attributes. FDs F → GKL, K → F, C → everything.
+Key C. Not BCNF F → GKL violates (F not a key of R2).
+Split 2 Split R2 on F → GKL.
+ R3(F, G, K, L) keys F and K. FDs F → GKL, K → F. In BCNF.
+ R4(C, F) key C. FD C → F. In BCNF.
+Result {R1(A, L), R3(F, G, K, L), R4(C, F)}  all in BCNF, lossless.
+Dependency-preserving check L → A in R1. F → GKL and K → F in R3. C → AFK
+need C → A (via C → F, F → L, L → A), C → K (via C → F, F → K)  these span multiple
+relations but are derivable. This decomposition happens to be dependency-preserving in this
+case.
+8.6 3NF Synthesis Algorithm (Bernstein)
+3NF Synthesis  Lossless AND Dependency-Preserving
+1. Compute minimal cover Fc.
+2. For each FD X → A1A2 . . . in Fc grouped by LHS X create relation Ri with schema
+X ∪ {A1, A2, . . .}.
+3. If no relation in the result contains a candidate key of R add one relation containing a
+candidate key.
+4. Remove any relation subsumed by another.
+3NF Synthesis  GA4  N-I Style
+Continuing from the minimal cover Mc = {L → A, F → GKL, K → F, C → K}.
+One relation per LHS group
+ L → A S1(L, A)
+ F → GKL S2(F, G, K, L)
+ K → F S3(K, F)
+ C → K S4(C, K)
+Ensure a candidate key is present Candidate key of R is {C}. C appears in S4. No extra
+relation needed.
+Remove subsumed relations S3(K, F) ⊆ S2(F, G, K, L). Remove S3.
+Final 3NF decomposition {S1(A, L), S2(F, G, K, L), S4(C, K)}.
+Checks Every FD of Mc holds in one relation. C (the candidate key) is in S4, ensuring lossless
+join. All relations are in BCNF (veried individually).
+Common Mistake
+Common mistakes in normalization
+ Determining keys from a sample table (data). Keys are schema-level constraints.
+ Dropping all of C → A, C → F, C → K at once. Test redundancy one by one on the
+22
+Fundamentals of Database Systems Ch.15  Normalization Algorithms
+remaining set.
+ Confusing no FD has A on the RHS (in F, not F
++). An attribute that appears on no
+RHS in F must be in every candidate key.
+ BCNF decomposition forgetting to re-project FDs onto each new subschema. Always
+recheck whether the projected FDs violate BCNF in the new relations.
+23
+Fundamentals of Database Systems Ch.8  Relational Algebra & Calculus
+9 Relational Algebra and Calculus (Chapter 8)
+9.1 Overview
+Relational algebra procedural; queries as sequences of operations on relations.
+Relational calculus declarative; species what, not how. Both are equivalent in expressive power
+(relationally complete).
+Schema used in examples BOOKS(ISBN, AuthorName, Title, Publisher, YearofBook), COAUTHORS(ISBN,
+JointAuthorName), PERSONS(Name, YearofBirth, Residence), PUBLISHERS(Publisher, City).
+9.2 Unary Operations
+SELECT (σ) and PROJECT (π) and RENAME (ρ)
+σc(R) returns tuples of R satisfying condition c. Output degree = degree of R.
+πA1,...,Ak
+(R) returns specied columns; removes duplicates. Output degree = k.
+ρS(B1,...,Bn)
+(R) renames relation to S and attributes to B1, . . . , Bn.
+Cascading SELECT σc1
+(σc2
+(R)) = σc1∧c2
+(R) (commutative).
+9.3 Set-Theory Operations
+Require union compatibility (same degree, same domains)
+Operation Symbol Denition
+Union R ∪ S All tuples in R or S (duplicates removed)
+Intersection R ∩ S Only tuples in both R and S
+Dierence R − S Tuples in R not in S (not commutative)
+Cartesian product R × S All combinations; not unioncompatible
+9.4 Binary Relational Operations
+JOIN (▷◁) and DIVISION (÷)
+Theta join R ▷◁θ S = σθ(R × S).
+Equijoin theta join where θ uses only =; result has duplicate attribute columns.
+Natural join (R ∗ S or R ▷◁ S) equijoin on all common attributes; duplicates removed.
+Division R(Z) ÷ S(X) where X ⊆ Z, Y = Z − X
+Result T(Y ) contains tuple t i for every tuple tS ∈ S, there exists a tuple in R with t[Y ] and
+tS[X].
+Use nd all Y values that are paired with every X value in S.
+Outer joins ▷◁L (left), ▷◁R (right), ▷◁F (full)  keep unmatched tuples with NULLs.
+Aggregate Function Operation (F)
+G1,...,GkFf1(A1),...(R) group R by G1, . . . , Gk; compute aggregate functions fi on each group.
+Functions SUM, COUNT, AVG, MAX, MIN.
+Elmasri notation Gℑf(A)
+(R).
+24
+Fundamentals of Database Systems Ch.8  Relational Algebra & Calculus
+RA-I Q1(a) Style Books where senior author is younger than ALL co-authors
+Step 1 Get birth year of each book's senior author.
+S ← ρS(ISBN,SYear)
+(πISBN, YearofBirth(BOOKS ▷◁AuthorName=Name PERSONS))
+Step 2 Get birth year of each co-author.
+C ← ρC(ISBN,CYear)
+(πISBN, YearofBirth(COAUTHORS ▷◁JointAuthorName=Name PERSONS))
+Step 3 Books where senior author is NOT younger than some co-author (SYear ≤ CYear).
+NOTYOUNGER ← πISBN(σSYear≤CYear(S ▷◁ C))
+Step 4 Subtract from all books; get full rows.
+BOOKS ▷◁ (πISBN(BOOKS) − NOTYOUNGER)
+Why this works A book with no co-authors never appears in S ▷◁ C, so it never enters
+NOTYOUNGER, meaning it is kept (a universal condition over an empty set is vacuously true).
+RA-I Q1(b) Style Book(s) with the most authors
+Step 1 Build a unied author relation.
+AUTH ← ρ(ISBN, Author)
+(πISBN, AuthorName(BOOKS))∪ρ(ISBN, Author)
+(πISBN, JointAuthorName(COAUTHORS))
+Step 2 Count authors per book.
+CNT ← ISBNFCOUNT(Author)→NumAuthors(AUTH)
+Step 3 Find max, then lter.
+πTitle, NumAuthors(BOOKS ▷◁ σNumAuthors=MaxN(CNT ▷◁ ∅FMAX(NumAuthors)→MaxN(CNT)))
+RA-I Q1(c) Style Per-city book count and author count
+Step 1 Join books with their publishers to get city.
+BC ← πISBN, City(BOOKS ▷◁ PUBLISHERS)
+Step 2 Count books per city.
+NB ← CityFCOUNT(ISBN)→NumBooks(BC)
+Step 3 Count distinct authors per city using AUTH from Q1(b).
+NA ← CityFCOUNT(Author)→NumAuthors(πCity, Author(BC ▷◁ AUTH))
+Step 4 Combine.
+NB ▷◁ NA
+25
+Fundamentals of Database Systems Ch.8  Relational Algebra & Calculus
+RA-G Proof that Natural Join
+Claim Given R(A1, . . . , An) and S(A1, . . . , An) (same schema), R ∗ S = R ∩ S.
+Proof (double containment)
+(⊆) Let t ∈ R∗S. By denition of natural join over all n attributes, there exist r ∈ R and s ∈ S
+with r[Ai
+] = s[Ai
+] for all i, and t = r[A1, . . . , An]. Since all attributes are common, t = r and
+t = s. So t ∈ R and t ∈ S, hence t ∈ R ∩ S.
+(⊇) Let t ∈ R ∩ S. Then t ∈ R and t ∈ S. Setting r = t, s = t r[Ai
+] = s[Ai
+] for all i. So t
+satises the join condition and t ∈ R ∗ S.
+Therefore R ∗ S = R ∩ S.
+9.5 Tuple Relational Calculus (TRC)
+TRC Query Form
+{t  COND(t)}  the set of all tuples t satisfying condition COND.
+An atom has the form t.A op c, t.A op s.B, or R(t) (t is a tuple in R).
+Connectives ∧, ∨, ¬. Quantiers ∃ (there exists), ∀ (for all).
+Safe expression every result tuple uses values that appear in the database (avoids innite
+results).
+TRC Examples
+Find all books published by a publisher in London
+{t  BOOKS(t) ∧ ∃p(PUBLISHERS(p) ∧ p.Publisher = t.Publisher ∧ p.City = `London')}
+Find persons who are not authors of any book
+{t  PERSONS(t) ∧ ¬(∃b(BOOKS(b) ∧ b.AuthorName = t.Name))
+∧¬(∃c(COAUTHORS(c) ∧ c.JointAuthorName = t.Name))}
+26
+Fundamentals of Database Systems Ch.6  Basic SQL
+10 Basic SQL (Chapter 6)
+10.1 SQL DDL Data Types and CREATE TABLE
+Data Type Usage Notes
+INTEGERINT Whole numbers
+SMALLINT Small whole numbers
+FLOAT(n), REAL Floating point
+DECIMAL(i,j) Exact decimal i total digits, j after decimal
+CHAR(n) Fixed-length string Padded with spaces
+VARCHAR(n) Variable-length string Up to n chars
+DATE Date YYYY-MM-DD
+TIME Time HHMMSS
+TIMESTAMP Date + time
+BOOLEAN Truefalse TRUE, FALSE, UNKNOWN
+Listing 1 CREATE TABLE with all constraint types
+CREATE TABLE EMPLOYEE (
+Fname VARCHAR (15) NOT NULL ,
+Minit CHAR ,
+Lname VARCHAR (15) NOT NULL ,
+Ssn CHAR (9) NOT NULL ,
+Bdate DATE ,
+Address VARCHAR (30) ,
+Sex CHAR ,
+Salary DECIMAL (10 ,2) DEFAULT 30000 ,
+Super_ssn CHAR (9) ,
+Dno INT NOT NULL ,
+CONSTRAINT EMP_PK PRIMARY KEY ( Ssn ) ,
+CONSTRAINT EMP_SUP FOREIGN KEY ( Super_ssn )
+REFERENCES EMPLOYEE ( Ssn )
+ON DELETE SET NULL ON UPDATE CASCADE ,
+CONSTRAINT EMP_DNO FOREIGN KEY ( Dno )
+REFERENCES DEPARTMENT ( Dnumber )
+ON DELETE NO ACTION ,
+CONSTRAINT EMP_SAL CHECK ( Salary  0)
+) ;
+10.2 Basic Retrieval Queries
+The structure of an SQL retrieval query
+SELECT [ DISTINCT ]  attribute list or  
+FROM table list 
+[ WHERE  condition ]
+[ GROUP BY  grouping attributes ]
+[ HAVING group condition ]
+[ ORDER BY  attribute  [ASC  DESC ]];
+Key WHERE operators =, , , , =, =, AND, OR, NOT, BETWEEN, LIKE (% = any sequence,
+_ = one char), IS NULL, IS NOT NULL, IN (list).
+27
+Fundamentals of Database Systems Ch.6  Basic SQL
+SQL Retrieval Examples  COMPANY Database
+-- Q1 Names and salaries of employees in dept 5 earning  30000
+SELECT Fname , Lname , Salary
+FROM EMPLOYEE
+WHERE Dno = 5 AND Salary  30000;
+-- Q2 Employees whose address contains 'Houston '
+SELECT Fname , Lname , Address
+FROM EMPLOYEE
+WHERE Address LIKE '% Houston %';
+-- Q3 All projects in Stafford or controlled by dept 5
+SELECT DISTINCT Pnumber
+FROM PROJECT
+WHERE Plocation = 'Stafford '
+OR Dnum IN ( SELECT Dnumber FROM DEPARTMENT WHERE Dname = 'Research ') ;
+-- Q4 For each dept , count employees and avg salary
+SELECT Dno , COUNT () AS NumEmployees , AVG( Salary ) AS AvgSalary
+FROM EMPLOYEE
+GROUP BY Dno
+HAVING AVG ( Salary )  30000
+ORDER BY AvgSalary DESC ;
+10.3 Aggregate Functions
+COUNT, SUM, AVG, MAX, MIN. Used in SELECT list, ltered by HAVING.
+Note
+WHERE lters individual rows before grouping. HAVING lters groups after grouping. You cannot
+use an aggregate function in a WHERE clause.
+10.4 INSERT, DELETE, UPDATE
+-- Insert a full row
+INSERT INTO EMPLOYEE VALUES
+('John ','B','Smith ','123456789 ','1965 -01 -09 ',
+'731 Fondren , Houston TX ','M' ,30000 , '333445555 ' ,5) ;
+-- Insert selected attributes
+INSERT INTO PROJECT ( Pname , Pnumber , Plocation , Dnum )
+VALUES ('NewProd ', 20 , 'Bellaire ', 4) ;
+-- Delete with condition
+DELETE FROM EMPLOYEE WHERE Lname = 'Brown ';
+-- Update with condition
+UPDATE EMPLOYEE
+SET Salary = Salary  1.1
+WHERE Dno = 5;
+28
+Fundamentals of Database Systems Ch.7  Advanced SQL
+11 Advanced SQL Subqueries, Views, Triggers (Chapter 7)
+11.1 Nested Queries and Subqueries
+Subquery Types and Operators
+A subquery is a complete SELECT block inside another SQL statement.
+ IN  NOT IN membership test against a set returned by subquery.
+ = ANY   ANY comparison to at least one value in the subquery result.
+  ALL comparison must hold for every value in the subquery result.
+ EXISTS  NOT EXISTS tests if the subquery returns any rows at all.
+ Correlated subquery references an attribute from the outer query; re-evaluated once
+per outer-query tuple.
+ Scalar subquery returns exactly one value; used in SELECT list or WHERE with =.
+SQL Subquery Examples
+-- EXISTS  Employees who have no dependents
+SELECT Fname , Lname
+FROM EMPLOYEE
+WHERE NOT EXISTS (
+SELECT  FROM DEPENDENT
+WHERE Essn = Ssn -- correlated  references outer Ssn
+) ;
+-- ALL  Employees earning more than ALL employees in dept 5
+SELECT Fname , Lname , Salary
+FROM EMPLOYEE
+WHERE Salary  ALL (
+SELECT Salary FROM EMPLOYEE WHERE Dno = 5
+) ;
+-- IN Projects in Stafford or run by Research dept
+SELECT Pnumber , Pname
+FROM PROJECT
+WHERE Dnum IN (
+SELECT Dnumber FROM DEPARTMENT WHERE Dname = 'Research '
+)
+OR Plocation = 'Stafford ';
+11.2 Explicit JOIN Syntax
+-- INNER JOIN ( same as natural join but explicit )
+SELECT E . Fname , E . Lname , D . Dname
+FROM EMPLOYEE E
+INNER JOIN DEPARTMENT D ON E . Dno = D . Dnumber ;
+-- LEFT OUTER JOIN  keep all employees , even those with no dept
+SELECT E . Fname , E . Lname , D . Dname
+FROM EMPLOYEE E
+LEFT OUTER JOIN DEPARTMENT D ON E . Dno = D . Dnumber ;
+29
+Fundamentals of Database Systems Ch.7  Advanced SQL
+11.3 GROUP BY, HAVING  Advanced Patterns
+IA6(a) Authors ranked within each publisher
+Problem For each publisher, list its senior authors in descending order of book count.
+SELECT Publisher , AuthorName
+FROM BOOKS
+GROUP BY Publisher , AuthorName
+ORDER BY Publisher ASC , COUNT () DESC ;
+-- COUNT () = number of books by this author with this publisher
+-- Note  an aggregate in ORDER BY is allowed even if not in SELECT
+How it works GROUP BY Publisher, AuthorName creates one group per (publisher, author)
+pair. COUNT() counts books in that group. ORDER BY Publisher keeps the same publisher
+together; COUNT() DESC ranks highest-count author rst within each publisher.
+IA6(b) Book(s) with the most authors
+Problem Books with the highest total author count (senior + co-authors). Handle ties.
+WITH AuthorCount AS (
+SELECT B . ISBN , B . Title ,
+1 + COUNT ( C . JointAuthorName ) AS NumAuthors
+FROM BOOKS B
+LEFT JOIN COAUTHORS C ON B . ISBN = C . ISBN
+GROUP BY B . ISBN , B . Title
+)
+SELECT ISBN , Title
+FROM AuthorCount
+WHERE NumAuthors = ( SELECT MAX( NumAuthors ) FROM AuthorCount ) ;
+Key points LEFT JOIN ensures books with no co-authors are included (they get COUNT =
+0, so total = 1). WITH (CTE) computes counts once and reuses them in the outer query. =
+MAX(NumAuthors) handles all ties automatically.
+IA6(c) Persons who are neither senior author nor co-author
+SELECT Name
+FROM PERSONS
+WHERE Name NOT IN ( SELECT AuthorName FROM BOOKS )
+AND Name NOT IN ( SELECT JointAuthorName FROM COAUTHORS ) ;
+-- Alternative using EXCEPT ( more readable )
+SELECT Name FROM PERSONS
+EXCEPT
+SELECT AuthorName FROM BOOKS
+EXCEPT
+SELECT JointAuthorName FROM COAUTHORS ;
+Warning NOT IN fails silently if the subquery returns any NULL values (the whole condition
+evaluates to UNKNOWN). The problem assumes AuthorName and JointAuthorName are never NULL.
+When in doubt, prefer NOT EXISTS.
+30
+Fundamentals of Database Systems Ch.7  Advanced SQL
+11.4 Views (Virtual Tables)
+View
+A view is a named derived table dened by a SELECT statement. It stores the query, not the
+data. Data is computed dynamically when the view is queried. Used for security (hide columns),
+simplication, and logical data independence.
+-- Create a view
+CREATE VIEW WORKS_ON1 AS
+SELECT Fname , Lname , Pname , Hours
+FROM EMPLOYEE , PROJECT , WORKS_ON
+WHERE Ssn = Essn AND Pno = Pnumber ;
+-- Query the view like a table
+SELECT Fname , Lname FROM WORKS_ON1 WHERE Pname = 'ProductX ';
+-- Drop a view
+DROP VIEW WORKS_ON1 ;
+Updatable views A view is updatable only if it maps one-to-one to a single base table and includes
+the base table's primary key (no joins, no aggregates, no DISTINCT).
+Exercise 7.8 Creating Views on the COMPANY Database
+-- 7.8 a Dept name , manager name , manager salary
+CREATE VIEW DEPT_MANAGER_INFO AS
+SELECT D . Dname , E . Fname , E . Lname , E . Salary AS Mgr_salary
+FROM DEPARTMENT D , EMPLOYEE E
+WHERE D . Mgr_ssn = E . Ssn ;
+-- 7.8 b Employee name , supervisor name , salary for Research dept
+CREATE VIEW RESEARCH_EMPS AS
+SELECT E . Fname AS Emp_fname , E . Lname AS Emp_lname ,
+S . Fname AS Sup_fname , S . Lname AS Sup_lname ,
+E . Salary
+FROM EMPLOYEE E , EMPLOYEE S , DEPARTMENT D
+WHERE E . Super_ssn = S . Ssn
+AND E . Dno = D . Dnumber
+AND D . Dname = 'Research ';
+-- 7.8 c Project name , controlling dept , num employees , total hours
+CREATE VIEW PROJECT_SUMMARY AS
+SELECT P . Pname , D . Dname , COUNT ( W . Essn ) AS Num_emps ,
+SUM( W . Hours ) AS Total_hours
+FROM PROJECT P , DEPARTMENT D , WORKS_ON W
+WHERE P . Dnum = D . Dnumber AND P . Pnumber = W . Pno
+GROUP BY P . Pnumber , P . Pname , D . Dname ;
+-- 7.8 d Same as above but only projects with more than one employee
+CREATE VIEW MULTI_EMP_PROJECTS AS
+SELECT P . Pname , D . Dname , COUNT ( W . Essn ) AS Num_emps ,
+SUM( W . Hours ) AS Total_hours
+FROM PROJECT P , DEPARTMENT D , WORKS_ON W
+WHERE P . Dnum = D . Dnumber AND P . Pnumber = W . Pno
+GROUP BY P . Pnumber , P . Pname , D . Dname
+HAVING COUNT ( W . Essn )  1;
+31
+Fundamentals of Database Systems Ch.7  Advanced SQL
+Exercise 7.9 Querying and Updating a View
+CREATE VIEW DEPT_SUMMARY (D , C , Total_s , Average_s ) AS
+SELECT Dno , COUNT () , SUM ( Salary ) , AVG( Salary )
+FROM EMPLOYEE
+GROUP BY Dno ;
+-- Allowed  query that uses only the view 's defined columns
+SELECT D , C FROM DEPT_SUMMARY WHERE Average_s  30000;
+-- NOT allowed  INSERT -- view has aggregates ; not updatable
+-- INSERT INTO DEPT_SUMMARY VALUES (3 , 3 , 90000 , 30000) ; -- REJECTED
+-- NOT allowed  UPDATE the C ( count ) column -- derived from aggregate
+-- UPDATE DEPT_SUMMARY SET C = 5 WHERE D = 5; -- REJECTED
+Views with GROUP BY, aggregates, DISTINCT, or multiple base tables are not updatable. The
+DBMS rejects INSERTUPDATEDELETE on such views.
+11.5 Specifying Constraints as Assertions (Section 7.2)
+Assertion
+A CREATE ASSERTION denes a named integrity constraint that the database must satisfy
+at all times. The DBMS checks the assertion after every update that could potentially violate
+it. If the CHECK condition evaluates to FALSE, the update is rejected.
+Unlike column-level CHECK constraints (which only check one table), assertions can reference
+multiple tables and are checked globally.
+Listing 2 Assertion no employee earns more than their direct manager
+CREATE ASSERTION SALARY_CONSTRAINT
+CHECK ( NOT EXISTS (
+SELECT 
+FROM EMPLOYEE E , EMPLOYEE M , DEPARTMENT D
+WHERE E . Dno = D . Dnumber
+AND D . Mgr_ssn = M . Ssn
+AND E . Salary  M . Salary
+) ) ;
+Listing 3 Assertion no employee works more than 40 hours total per week
+CREATE ASSERTION NO_OVERLOADED_EMPLOYEE
+CHECK ( NOT EXISTS (
+SELECT Essn
+FROM WORKS_ON
+GROUP BY Essn
+HAVING SUM ( Hours )  40
+) ) ;
+32
+Fundamentals of Database Systems Ch.7  Advanced SQL
+11.6 Actions as Triggers (Section 7.2)
+Trigger  Event, Condition, Action (ECA)
+A trigger is a stored rule that res automatically when a database event occurs. Its three
+components are
+ Event the triggering DML operation  INSERT, DELETE, or UPDATE [OF column], applied
+BEFORE or AFTER the operation.
+ Condition (WHEN clause) optional predicate; the action res only if this evaluates to
+TRUE. Can reference NEW (new tuple being insertedupdated) and OLD (old tuple being
+deletedupdated).
+ Action (BEGIN...END) SQL statements to execute  can update other tables, raise errors,
+send notications, etc.
+Row-level trigger (FOR EACH ROW) res once per aected row.
+Statement-level trigger (default) res once per SQL statement regardless of how many rows
+are aected.
+Assertion vs Trigger  Key Dierence
+An assertion is declarative you specify a condition that must always be true; the DBMS
+decides when to check it and always rejects the violating update.
+A trigger is imperative you specify an event, an optional condition, and an action to execute.
+The action can do anything  update another table, log a record, send a notication, or raise
+an error. Triggers are more exible but harder to reason about than assertions.
+Listing 4 Trigger prevent salary exceeding supervisor's salary (Exercise 7.4d style)
+CREATE TRIGGER SALARY_VIOLATION
+BEFORE INSERT OR UPDATE OF Salary , Super_ssn
+ON EMPLOYEE
+FOR EACH ROW
+WHEN ( NEW . Salary  ( SELECT Salary FROM EMPLOYEE
+WHERE Ssn = NEW . Super_ssn ) )
+BEGIN
+RAISE_APPLICATION_ERROR ( -20001 ,
+'Employee salary cannot exceed supervisor salary ') ;
+END;
+Listing 5 Trigger automatically log salary changes to an audit table
+CREATE TRIGGER LOG_SALARY_CHANGE
+AFTER UPDATE OF Salary ON EMPLOYEE
+FOR EACH ROW
+BEGIN
+INSERT INTO SALARY_AUDIT ( Ssn , Old_salary , New_salary , Change_date )
+VALUES ( OLD . Ssn , OLD . Salary , NEW . Salary , CURRENT_DATE ) ;
+END;
+Note
+NEW and OLD are special references inside a row-level trigger
+ NEW the row as it will look after the operation (available in INSERT and UPDATE).
+ OLD the row as it looked before the operation (available in DELETE and UPDATE).
+ NEW is not available in DELETE triggers; OLD is not available in INSERT triggers.
+33
+Fundamentals of Database Systems Ch.7  Advanced SQL
+11.7 Schema Change Statements (Section 7.4)
+ALTER TABLE and DROP
+ALTER TABLE modies an existing table schema  adddrop columns, adddrop constraints.
+DROP TABLE removes a table entirely.
+DROP SCHEMA removes an entire schema.
+RESTRICT the operation is rejected if any other schema element (view, constraint, FK)
+references the dropped element.
+CASCADE the operation also drops all dependent elements automatically.
+-- Add a column ( existing rows get the DEFAULT value or NULL )
+ALTER TABLE EMPLOYEE ADD COLUMN Job VARCHAR (12) ;
+-- Drop a column -- CASCADE also drops views and constraints using it
+ALTER TABLE EMPLOYEE DROP COLUMN Job CASCADE ;
+-- Add a constraint after table creation
+ALTER TABLE EMPLOYEE
+ADD CONSTRAINT CHK_SAL CHECK ( Salary = 0) ;
+-- Drop a table -- RESTRICT  rejected if any FK references it
+DROP TABLE DEPENDENT RESTRICT ;
+-- Drop a table -- CASCADE  also drops all FKs referencing it
+DROP TABLE DEPARTMENT CASCADE ;
+-- Drop an entire schema and everything in it
+DROP SCHEMA COMPANY CASCADE ;
+-- Drop a view
+DROP VIEW WORKS_ON1 RESTRICT ;
+34
+Fundamentals of Database Systems Ch.10  Embedded SQL & SQLJ
+12 Embedded SQL and SQLJ (Chapter 10, Sections 10.1 and 10.2)
+12.1 Overview of Database Programming Approaches (Section 10.1)
+Three Approaches to Database Programming
+1. Embedded SQL SQL commands are written directly inside a host-language program (C,
+COBOL, Fortran). A precompiler scans the source le, extracts the SQL statements, and
+replaces them with calls to the DBMS runtime library. The resulting le is then compiled
+normally. SQL is xed at compile time.
+2. Function call libraries (SQLCLI, JDBC, ODBC) SQL is passed as a character string
+to library functions at runtime. More exible  the query can be built dynamically. JDBC
+is the standard Java version; ODBC is the CWindows version; SQLCLI is the standard
+C version.
+3. Database programming languages (SQLPSM, PLSQL) Extends SQL with procedural constructs (loops, conditionals, variables, exception handling). Stored procedures and
+functions live inside the DBMS. Best performance because there is no network round-trip
+per statement.
+Impedance Mismatch
+The impedance mismatch problem arises because SQL is a set-oriented language (a query
+returns a table of rows), while host languages like C or Java are record-at-a-time (a variable
+holds one value at a time).
+Solution use a cursor  a named pointer into a query result set. The program opens the
+cursor (executes the query), then fetches rows one by one in a loop, and closes the cursor when
+done.
+12.2 Embedded SQL in C (Section 10.2)
+Embedded SQL Key Syntax Rules
+ Every SQL command is prexed with EXEC SQL and terminated with a semicolon.
+ Host variables (C variables shared with SQL) are declared inside EXEC SQL BEGIN DECLARE
+SECTION ... END DECLARE SECTION.
+ Inside an SQL statement, host variables are referenced with a colon prex varname.
+ SQLCODE (integer) or SQLSTATE (5-char string) holds the status after each SQL statement 0 = success, 100 = no more rows (SQLSTATE = '02000'), negative = error.
+ Cursor lifecycle DECLARE (dene the query) → OPEN (execute it) → FETCH (get one row) →
+CLOSE (release resources).
+Embedded SQL Example E1 Retrieve one employee by SSN (Textbook Figure 10.2
+style)
+EXEC SQL BEGIN DECLARE SECTION ;
+char ssn [10];
+varchar fname [16] , lname [16] , address [31];
+float salary ;
+int SQLCODE ;
+EXEC SQL END DECLARE SECTION ;
+ Main program loop 
+35
+Fundamentals of Database Systems Ch.10  Embedded SQL & SQLJ
+int loop = 1;
+while ( loop ) {
+prompt ( Enter SSN , ssn ) ;
+EXEC SQL SELECT Fname , Lname , Address , Salary
+INTO  fname ,  lname ,  address ,  salary
+FROM EMPLOYEE
+WHERE Ssn =  ssn ;
+if ( SQLCODE == 0)
+printf (%s %s %s %.2fn, fname , lname , address , salary ) ;
+else
+printf (No employee with SSN %s found .n, ssn ) ;
+prompt ( Continue  (1= Yes , 0= No) , & loop ) ;
+}
+Key points The INTO clause maps query result columns to host variables. Because this query
+returns at most one row (SSN is a PK), no cursor is needed. SQLCODE = 0 means success; any
+other value means no row was found or an error occurred.
+Embedded SQL Example E2 Cursor for multiple rows and update (Textbook Figure
+10.3 style)
+EXEC SQL BEGIN DECLARE SECTION ;
+varchar dname [16];  input  department name 
+int dnumber ;  retrieved dept number 
+varchar fname [16] , lname [16];
+float salary , raise ;
+int SQLCODE ;
+EXEC SQL END DECLARE SECTION ;
+ Declare a cursor for all employees in a given department 
+EXEC SQL DECLARE EMP_CUR CURSOR FOR
+SELECT Fname , Lname , Salary , Ssn
+FROM EMPLOYEE
+WHERE Dno =  dnumber ;
+ Get the department number from its name 
+prompt ( Enter department name  , dname ) ;
+EXEC SQL SELECT Dnumber INTO  dnumber
+FROM DEPARTMENT WHERE Dname =  dname ;
+EXEC SQL OPEN EMP_CUR ;  execute the query 
+while (1) {
+EXEC SQL FETCH EMP_CUR INTO  fname ,  lname ,  salary ;
+if ( SQLCODE == 100) break ;  no more rows 
+printf (%s %s current salary  %.2 fn, fname , lname , salary ) ;
+prompt ( Enter raise amount  , & raise ) ;
+EXEC SQL UPDATE EMPLOYEE
+SET Salary = Salary +  raise
+WHERE CURRENT OF EMP_CUR ;  update fetched row 
+}
+36
+Fundamentals of Database Systems Ch.10  Embedded SQL & SQLJ
+EXEC SQL CLOSE EMP_CUR ;
+Key points DECLARE CURSOR only denes the query  it does not run it. OPEN executes
+it. FETCH retrieves one row at a time into host variables. SQLCODE = 100 (or SQLSTATE =
+'02000') means the cursor is exhausted. WHERE CURRENT OF cursor updates the row most
+recently fetched.
+Exercise 10.7 Read student name, print GPA in Embedded SQLC
+Database STUDENT(Student_number, Name, Class, Major),
+GRADE_REPORT(Student_number, Section_id, Grade). Grading A=4, B=3, C=2,
+D=1 points.
+EXEC SQL BEGIN DECLARE SECTION ;
+varchar sname [50];  input  student name 
+int snum ;  student number 
+char grade [2];  one grade letter 
+float gpa ;
+int SQLCODE ;
+EXEC SQL END DECLARE SECTION ;
+EXEC SQL DECLARE GRADE_CUR CURSOR FOR
+SELECT Grade
+FROM GRADE_REPORT
+WHERE Student_number =  snum ;
+ Step 1 get student number from name 
+prompt ( Enter student name  , sname ) ;
+EXEC SQL SELECT Student_number INTO  snum
+FROM STUDENT WHERE Name =  sname ;
+if ( SQLCODE != 0) { printf ( Student not found .n) ; exit (1) ; }
+ Step 2 iterate over grades and accumulate points 
+EXEC SQL OPEN GRADE_CUR ;
+int count = 0; float total = 0.0;
+while (1) {
+EXEC SQL FETCH GRADE_CUR INTO  grade ;
+if ( SQLCODE == 100) break ;
+if ( grade [0]== 'A') total += 4.0;
+else if ( grade [0]== 'B') total += 3.0;
+else if ( grade [0]== 'C') total += 2.0;
+else if ( grade [0]== 'D') total += 1.0;
+count ++;
+}
+EXEC SQL CLOSE GRADE_CUR ;
+gpa = ( count  0)  total  count  0.0;
+printf (GPA for %s %.2 fn, sname . arr , gpa ) ;
+37
+Fundamentals of Database Systems Ch.10  Embedded SQL & SQLJ
+12.3 SQLJ Embedded SQL in Java (Section 10.2)
+SQLJ Syntax
+SQLJ embeds SQL in Java using #sql { ... } syntax instead of EXEC SQL. Java variables are
+referenced inside SQL with a colon varname. A SQLJ precompiler translates the #sql blocks
+into JDBC calls before compilation, giving compile-time type checking (unlike JDBC which uses
+plain strings).
+Two types of iterators for multi-row results
+Named iterator each column accessed by a method with the column's name.
+iter.ColName().
+Positional iterator columns accessed in order using FETCH ... INTO var1, var2.
+Listing 6 SQLJ single-row retrieval and named-iterator cursor (Textbook Figures 10.710.9 style)
+ --- Single row  retrieve one employee by SSN ---
+String ssn = readEntry ( Enter SSN ) ;
+String fname , lname , address ; double salary ;
+#sql { SELECT Fname , Lname , Address , Salary
+INTO  fname ,  lname ,  address ,  salary
+FROM EMPLOYEE WHERE Ssn =  ssn };
+System . out . println ( fname +   + lname +   + salary ) ;
+ --- Named iterator  iterate over all employees in a department ---
+ Step 1 declare the iterator type ( column names become method names )
+#sql iterator EmpIter ( String Fname , String Lname , double Salary ) ;
+ Step 2 execute the query
+int dno = 5;
+EmpIter iter ;
+#sql iter = { SELECT Fname , Lname , Salary
+FROM EMPLOYEE WHERE Dno =  dno };
+ Step 3 iterate
+while ( iter . next () ) {
+System . out . println ( iter . Fname () +   + iter . Lname ()
++   + iter . Salary () ) ;
+}
+iter . close () ;  Step 4 release resources
+Note
+Embedded SQL vs SQLJ vs JDBC  comparison
+Embedded SQL (C) SQLJ (Java) JDBC (Java)
+SQL syntax EXEC SQL ...; #sql {...}; String passed to method
+Checked at Precompile time Precompile time Runtime only
+Type safety Yes Yes No
+Flexibility Low (static SQL) Low (static SQL) High (dynamic SQL)
+Iteratorcursor DECLARE CURSOR #sql iterator ResultSet
+38
+Fundamentals of Database Systems Quick Reference
+13 Quick Reference and Summary
+Relational Algebra Operations
+Op Symbol Returns Requirement
+Select σc(R) Rows satisfying c 
+Project πL(R) Columns in list L (no dups) 
+Rename ρS(B1,...)
+(R) Renamed schema 
+Union R ∪ S All rows, no dups Union compatible
+Intersection R ∩ S Common rows Union compatible
+Dierence R − S Rows in R not in S Union compatible
+Cartesian product R × S All combinations 
+Theta join R ▷◁θ S σθ(R × S) 
+Natural join R ∗ S Join on common attrs 
+Division R ÷ S Y tuples matched to all S X ⊆ Z
+Aggregate GFf(A)
+(R) Grouped aggregates 
+Normal Form Conditions
+NF Condition
+1NF All domains are atomic; no multivalued or nested
+attributes.
+2NF 1NF + no partial dependency of non-prime attribute on any candidate key.
+3NF 2NF + no transitive dependency of non-prime attr
+on PK. (Formally for every non-trivial FD X → A
+X superkey OR A prime.)
+BCNF For every non-trivial FD X → Y  X is a superkey.
+4NF BCNF + for every non-trivial MVD X ↠ Y  X is
+a superkey.
+ER to Relational Mapping  7 Steps at a Glance
+S1. Strong entity → one relation; include simple attrs; choose PK.
+S2. Weak entity → one relation; include owner's PK as FK; PK = owner PK + partial key.
+S3. 1  1 relationship → add FK to the total-participation side; add relationship attrs.
+S4. 1  N relationship → add FK to the N-side; add relationship attrs.
+S5. M  N relationship → new relation with both PKs as FKs; PK = both FKs; add attrs.
+S6. Multivalued attribute → new relation with entity PK as FK; PK = FK + attribute.
+S7. n-ary (n  2) relationship → new relation with all entity PKs as FKs.
+SQL Query Clause Order
+SELECT [ DISTINCT ] cols  aggregates  
+FROM tables  joined tables
+[ WHERE row - level condition ]
+[ GROUP BY grouping columns ]
+[ HAVING group - level condition ]
+[ ORDER BY col [ASC DESC ] , ...]
+39
+Fundamentals of Database Systems Quick Reference
+Armstrong's Axioms
+IR1 (Reexivity) Y ⊆ X ⇒ X → Y . IR2 (Augmentation) X → Y ⇒ XZ → Y Z. IR3
+(Transitivity) X → Y, Y → Z ⇒ X → Z.
+Derived IR4 (Decomposition), IR5 (Union), IR6 (Pseudotransitivity).
+Key Theorem Attribute Not on Any RHS
+If attribute A appears on the RHS of no FD in F (not F
++), then A must belong to every candidate
+key of R.
+ End of Course Notes 
+Based on Ramez Elmasri & Shamkant B. Navathe,
+Fundamentals of Database Systems, 7th Edition, Pearson, 2015.
+40

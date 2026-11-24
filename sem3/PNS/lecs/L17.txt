@@ -1,0 +1,172 @@
+RECAP
+
+        Inverse transform method
+        FX (X ) is Uniform!
+        Importance Sampling
+
+                                                                                                                                                                        3 / 31
+Accept Reject method
+
+ Suppose you want to generate samples from X with pmf p(·)
+   using samples from Y with pmf q(·).
+
+  Suppose   that   p(y )  c     for  all   y.
+                   q(y )
+
+ The accept reject method is as follows:
+
+ Step 1: Generate a sample y  q(·).
+
+ Step 2: Generate u  U(0, 1).
+
+  Step  3:  If  u    p(y )   ,  accept  y  as  a  sample  from  X.
+                     cq(y )
+
+ Step 4: If not, reject y and go back to Step 1.
+
+                                                                    4 / 31
+Accept Reject method
+
+        Why does the method work ?
+        What is P(y /accept) ? is it p(y ) ?
+
+                                                                                                                                                                        5 / 31
+Proof of Accept-Reject Method
+
+ To prove that the method produces samples from p(·), we will
+   compute the probability of accepting a sample y from q(·).
+
+ The probability of accepting y is given by:
+
+P (accept          |  y)  =  P         p(y )   =  p(y )
+                                       cq(y )     cq(y )
+                                  u
+
+since u  U(0, 1).
+
+ Thus, the joint probability of sampling y  q(·) and accepting
+   it is:
+
+P (sample  y       and    accept) = q(y ) ·  p(y )   =  p(y )
+                                             cq(y )       c
+
+                                                                6 / 31
+Proof (cont'd)
+
+ The marginal probability of accepting any sample (i.e.,
+   normalizing constant) is:
+
+P (accept)      =  P P(sample  y  and  accept)  =  P   p(y )  =  1
+                                                         c       c
+                    y                               y
+
+ The conditional probability of accepting a particular sample y
+   given that the sample was accepted is:
+
+P (y  | accept) =  P(sample y and accept)       =  p(y )  = p(y )
+                           P (accept)                c
+                                                     1
+                                                     c
+
+ Therefore, the accepted samples are distributed according to
+   p(·), proving that the method works.
+
+                                                                    7 / 31
+Stochastic Simulation
+
+        This was a brief introduction to this area of stochastic
+           simulation.
+
+        Refer the book Simulation by Sheldon Ross!
+
+        Some popular techniques in simulation are:
+         The inverse transform method
+
+                Accept-Reject method (rejection sampling)
+                Importance sampling
+                Markov Chain Monte Carlo (MCMC) methods
+
+                         Hasting-Metropolis algorithm
+                         Gibbs sampling
+                         Slice sampling
+
+                                                                                                                                                                        8 / 31
+Convergence of Random Variables
+
+                                                                                                                                           8 / 31
+Pointwise Convergence
+
+        When do we say that {xn} converges to x  R ?
+               We say that {xn} converges to x  R (denoted by xn 
+               x ) if for every  > 0, we can find an N()  N such that
+               for |xn - x | <  for n > N().
+
+        What about convergence of functions?
+        When do we say that a sequence of functions Fn(·) converge
+
+           to F (·) on the domain R?
+               We say that the sequence of function Fn(·) converge
+               to F (·) pointwise if the sequence {Fn(x )} converges to
+               F (x ) (Fn(x )  F (x )) for all x  R.
+
+                                                                                                                                                                        9 / 31
+Uniform Convergence
+
+         We say that the sequence of function Fn(·) converge to
+         F (·) pointwise if the sequence {Fn(x )} converges to F (x )
+         (Fn(x )  F (x )) for all x  R.
+
+        For every x , the sequence {Fn(x )} coverges to F (x ).
+        For every , there exists N(, x ) which can depend on x .
+        Only those Fn(x ) are  close to F (x ) for which n > N(, x ).
+
+         If N(, x ) = N() (i.e., independent of x ) for every x  R,
+         then such convergence of Fn(·) to F (·) is called as uniform
+         convergence.
+
+                                                                                                                                                                       10 / 31
+Convergence of Sequence of random variables
+
+        We will now be interested in the convergence properties of an
+           infinite sequence of random variables {Xn} to some limiting
+           random variable X .
+
+        What does the convergence Xn  X even mean ?
+        When you perform the random experiment once, you get a
+
+           sequence of realizations {xn} and x .
+        If you are 'lucky', maybe xn  x .
+        But if you were to perform the experiment again, you may not
+
+           be so 'lucky' and get a different sequence {xn } which may not
+           converge to x .
+        We will come up with notions of convergence that depend on
+           how often you see the sequence of realizations converging.
+
+                                                                                                                                                                       11 / 31
+Convergence of Sequence of random variables
+
+        Convergence of Xn  X
+        Here X could even be a deterministic number.
+        Xn s could be dependent on each other.
+        Each random variable Xn could have a different law
+
+           (pmf/pdf ).
+
+                                                                                                                                                                       12 / 31
+Modes of Convergence (Xn  X )
+
+Pointwise or Sure convergence
+
+{Xn, n  0} converges to X pointwise or surely if for all
+   we have limn Xn() = X ()
+
+ Consider  = {H, T }.
+
+                (1        if  = H                 (   if  = H
+ Further, Xn =  n         if  = T .                   if  = T .
+                       1             and X = 0
+                1   +  n                           1
+
+                                                                 13 / 31
+
